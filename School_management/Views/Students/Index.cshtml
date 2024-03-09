@@ -1,0 +1,55 @@
+﻿@model IEnumerable<School_management.Models.Student>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.stu_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.stu_gender)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.stu_age)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.stu_subject)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.stu_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.stu_gender)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.stu_age)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.stu_subject)
+        </td>
+        <td>
+            @if (User.IsInRole("Admin"))
+            {
+                @Html.ActionLink("Edit", "Edit", new { id = item.stu_id }) <text>|</text>
+                @Html.ActionLink("Delete", "Delete", new { id = item.stu_id }) <text>|</text>
+            }
+            @Html.ActionLink("Details", "Details", new { id = item.stu_id })
+        </td>
+    </tr>
+}
+
+</table>
